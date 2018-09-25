@@ -12,6 +12,12 @@ import java.util.Date;
 public class User {
 
     /**
+     * 用户ID
+     */
+    @Id
+    private int userId;
+
+    /**
      * 用户手机
      */
     @Name
@@ -46,6 +52,14 @@ public class User {
      */
     @Column
     private Date updateTime;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public String getEmail() {
         return email;
