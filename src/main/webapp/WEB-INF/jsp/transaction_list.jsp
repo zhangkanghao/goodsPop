@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: kang
+  Date: 18-10-19
+  Time: 下午3:58
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
@@ -84,8 +91,49 @@
             </h3>
             <!-- END PAGE TITLE-->
             <!-- END PAGE HEADER-->
-            <div class="note note-info">
-                <p> A black page template with a minimal dependency assets to use as a base for any custom page you create </p>
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                    <div class="portlet light bordered">
+                        <div class="portlet-title">
+                            <div class="caption font-dark">
+                                <i class="icon-settings font-dark"></i>
+                                <span class="caption-subject bold uppercase">Buttons</span>
+                            </div>
+                            <div class="tools"> </div>
+                        </div>
+                        <div class="portlet-body">
+                            <table class="table table-striped table-bordered table-hover" id="sample_1">
+                                <thead>
+                                <tr>
+                                    <th> Rendering engine </th>
+                                    <th> Browser </th>
+                                    <th> Platform(s) </th>
+                                    <th> Engine version </th>
+                                    <th> CSS grade </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td> Trident </td>
+                                    <td> Internet Explorer 4.0 </td>
+                                    <td> Win 95+ </td>
+                                    <td> 4 </td>
+                                    <td> X </td>
+                                </tr>
+                                <tr>
+                                    <td> Trident </td>
+                                    <td> Internet Explorer 5.0 </td>
+                                    <td> Win 95+ </td>
+                                    <td> 5 </td>
+                                    <td> C </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- END EXAMPLE TABLE PORTLET-->
+                </div>
             </div>
         </div>
         <!-- END CONTENT BODY -->
