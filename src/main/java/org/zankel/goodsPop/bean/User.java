@@ -20,13 +20,13 @@ public class User {
     /**
      * 用户手机
      */
-    @Name
+    @Column
     private String phone;
 
     /**
      * 邮箱
      */
-    @Column
+    @Name
     private String email;
 
     /**

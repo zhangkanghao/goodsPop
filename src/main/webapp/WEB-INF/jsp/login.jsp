@@ -9,13 +9,13 @@
 
     <head>
         <meta charset="utf-8" />
-        <title>Metronic | User Login 5</title>
+        <title>User Login</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="" name="description" />
         <meta content="" name="author" />
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+        <%--<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />--%>
         <link href="../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -43,17 +43,17 @@
         <div class="user-login-5">
             <div class="row bs-reset">
                 <div class="col-md-6 bs-reset">
-                    <div class="login-bg" style="background-image:url(../assets/pages/img/login/bg1.jpg)">
+                    <div class="login-bg" style="background-image:url(../../assets/pages/img/login/bg1.jpg)">
                         <img class="login-logo" src="../assets/pages/img/login/logo.png" /> </div>
                 </div>
                 <div class="col-md-6 login-container bs-reset">
                     <div class="login-content">
                         <h1>用户登陆</h1>
-                        <p> 这是一句很长的话，恩没错确实很长，用来介绍一下这个网站啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦拉来了啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦！ </p>
-                        <form action="javascript:;" class="login-form" method="post">
+                        <p> placehoder</p>
+                        <form id="loginForm" action="javascript:;" class="login-form" method="post">
                             <div class="row">
                                 <div class="col-xs-6">
-                                    <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="用户名" name="username" required/> </div>
+                                    <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="用户名" name="email" required/> </div>
                                 <div class="col-xs-6">
                                     <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="密码" name="password" required/> </div>
                             </div>
@@ -73,7 +73,7 @@
                                     <div class="forgot-password">
                                         <a href="javascript:;" id="forget-password" class="forget-password">忘记密码?</a>
                                     </div>
-                                    <button class="btn blue" type="submit">登陆</button>
+                                    <button class="btn blue" type="submit" id="login_btn">登陆</button>
                                 </div>
                             </div>
                         </form>
@@ -85,14 +85,14 @@
                                 <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" /> </div>
                             <div class="form-actions">
                                 <button type="button" id="back-btn" class="btn grey btn-default">返回</button>
-                                <button type="submit" class="btn blue btn-success uppercase pull-right">提交</button>
+                                <button type="submit" id="submit-btn" class="btn blue btn-success uppercase pull-right">提交</button>
                             </div>
                         </form>
                         <!-- END FORGOT PASSWORD FORM -->
                     </div>
                     <div class="login-footer">
                         <div class="row bs-reset">
-                            <div class="col-xs-4 bs-reset">
+                            <%--<div class="col-xs-4 bs-reset">--%>
                                 <%--<ul class="login-social">--%>
                                     <%--<li>--%>
                                         <%--<a href="javascript:;">--%>
@@ -110,7 +110,7 @@
                                         <%--</a>--%>
                                     <%--</li>--%>
                                 <%--</ul>--%>
-                            </div>
+                            <%--</div>--%>
                             <div class="col-xs-8 bs-reset">
                                 <div class="login-copyright text-right">
                                     <p>Copyright &copy; Keenthemes 2015</p>
@@ -123,9 +123,9 @@
         </div>
         <!-- END : LOGIN PAGE 5-1 -->
         <!--[if lt IE 9]>
-<script src="../assets/global/plugins/respond.min.js"></script>
-<script src="../assets/global/plugins/excanvas.min.js"></script> 
-<![endif]-->
+        <script src="../assets/global/plugins/respond.min.js"></script>
+        <script src="../assets/global/plugins/excanvas.min.js"></script>
+        <![endif]-->
         <!-- BEGIN CORE PLUGINS -->
         <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
         <script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
@@ -137,8 +137,7 @@
         <script src="../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
         <!-- END CORE PLUGINS -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <script src="../assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
+        <script src="../assets/bootstrapVaildator/bootstrapValidator.js" type="text/javascript"></script>
         <script src="../assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
         <script src="../assets/global/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL PLUGINS -->
@@ -146,7 +145,7 @@
         <script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="../assets/pages/scripts/login-5.js" type="text/javascript"></script>
+        <script src="../assets/pages/scripts/login.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <!-- END THEME LAYOUT SCRIPTS -->
