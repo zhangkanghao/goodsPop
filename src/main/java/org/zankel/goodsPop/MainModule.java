@@ -21,7 +21,7 @@ public class MainModule {
     @Ok("re")
     public String index(HttpSession session) {
         if (session.getAttribute("uid") == null) return ">>:/user/loginpage";
-        else return "jsp.index";
+        else return "jsp:jsp.index";
     }
 
 

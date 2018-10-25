@@ -2,6 +2,7 @@ package org.zankel.goodsPop.module;
 
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Dao;
+import org.nutz.dao.pager.Pager;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.lang.Strings;
@@ -17,6 +18,7 @@ import org.zankel.goodsPop.bean.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.List;
 
 @IocBean
 @At("/user")
@@ -81,9 +83,13 @@ public class UserModule {
         //登陆
         session.setAttribute("uid",user.getUserId());
 
-        return null;
+        return new NutMap().setv("ok",true);
     }
 
+    @At
+    public Object getList(HttpSession session, Pager pager){
+        return dao.query(User.class,Cnd.NEW(),pager);
+    }
 
 
     private String checkUsernameAndPasswd(String username,String password){

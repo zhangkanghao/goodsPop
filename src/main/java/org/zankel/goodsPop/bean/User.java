@@ -24,7 +24,7 @@ public class User {
     private String phone;
 
     /**
-     * 绑定邮箱
+     * 邮箱
      */
     @Column
     private String email;
