@@ -108,7 +108,7 @@ public class Transaction {
     }
 
     public String getTransacDate() {
-        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(transacDate);
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(transacDate);
     }
 
     public void setTransacDate(Date transcaDate) {
@@ -116,7 +116,7 @@ public class Transaction {
     }
 
     public String getFinishDate() {
-        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(finishDate);
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(finishDate);
     }
 
     public void setFinishDate(Date finishDate) {

@@ -170,6 +170,9 @@
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="../assets/pages/scripts/transaction_list.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
+<script>
+
+</script>
 </body>
 
 </html>

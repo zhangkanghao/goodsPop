@@ -20,7 +20,8 @@ var TableDatatablesEditable = function () {
             jqTds[1].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[1] + '">';
             jqTds[2].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[2] + '">';
             jqTds[3].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[3] + '">';
-            jqTds[4].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[4] + '">';
+            aData[4]=aData[4].slice(0,10)+'T'+aData[4].slice(11);
+            jqTds[4].innerHTML = '<input type="datetime-local" class="form-control input-small" value="' + aData[4] + '">';
             jqTds[5].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[5] + '">';
             jqTds[6].innerHTML = '<a class="edit" href="">Save</a>';
             jqTds[7].innerHTML = '<a class="cancel" href="">Cancel</a>';
@@ -32,7 +33,7 @@ var TableDatatablesEditable = function () {
             oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
             oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
             oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-            oTable.fnUpdate(jqInputs[4].value, nRow, 4, false);
+            oTable.fnUpdate(jqInputs[4].value.slice(0,10)+' '+jqInputs[4].value.slice(11), nRow, 4, false);
             oTable.fnUpdate(jqInputs[5].value, nRow, 5, false);
             oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 6, false);
             oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 7, false);
@@ -158,6 +159,16 @@ var TableDatatablesEditable = function () {
                 /* Editing this row and want to save it */
                 saveRow(oTable, nEditing);
                 nEditing = null;
+                var jqInputs = $('>td', nRow);
+                $.ajax({
+                    type:"POST",
+                    url:"/transac/updateRow",
+                    data:{customerName:jqInputs[1].value,leatherName:jqInputs[2].value,transacVolumn:jqInputs[3].value,transacDate:jqInputs[4].value},
+                    dataType:"json",
+                    success:function(data){
+                        console.log("更改完成");
+                    }
+                })
                 alert("Updated! Do not forget to do some ajax to sync with backend :)");
             } else {
                 /* No edit in progress - let's start one */
