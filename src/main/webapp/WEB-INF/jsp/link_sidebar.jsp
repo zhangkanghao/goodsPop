@@ -75,7 +75,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item  ">
-                        <a href="transaction_list.jsp" class="nav-link ">
+                        <a href="/transac/transacPage" class="nav-link ">
                             <span class="title">交易记录</span>
                         </a>
                     </li>

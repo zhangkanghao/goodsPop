@@ -3,8 +3,11 @@ package org.zankel.goodsPop.bean;
 import com.sun.istack.internal.NotNull;
 import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.entity.annotation.Id;
+import org.nutz.dao.entity.annotation.One;
 import org.nutz.dao.entity.annotation.Table;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -25,10 +28,14 @@ public class Transaction {
     @NotNull
     private String customerName;
     /**
-     * 交易皮革
+     * 皮革ID,映射
      */
     @Column
-    @NotNull
+    private int leatherId;
+    /**
+     * 交易皮革
+     */
+    @One(field = "leatherId")
     private Leather leather;
     /**
      * 交易量
@@ -43,10 +50,12 @@ public class Transaction {
     /**
      * 交易时间
      */
-    private Date transcaDate;
+    @Column
+    private Date transacDate;
     /**
      * 结账时间
      */
+    @Column
     private Date finishDate;
 
     public int getTransacId() {
@@ -63,6 +72,14 @@ public class Transaction {
 
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
+    }
+
+    public int getLeatherId() {
+        return leatherId;
+    }
+
+    public void setLeatherId(int leatherId) {
+        this.leatherId = leatherId;
     }
 
     public Leather getLeather() {
@@ -90,19 +107,20 @@ public class Transaction {
         this.transacVolumn = transacVolumn;
     }
 
-    public Date getTranscaDate() {
-        return transcaDate;
+    public String getTransacDate() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(transacDate);
     }
 
-    public void setTranscaDate(Date transcaDate) {
-        this.transcaDate = transcaDate;
+    public void setTransacDate(Date transcaDate) {
+        this.transacDate = transcaDate;
     }
 
-    public Date getFinishDate() {
-        return finishDate;
+    public String getFinishDate() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(finishDate);
     }
 
     public void setFinishDate(Date finishDate) {
         this.finishDate = finishDate;
     }
+
 }
