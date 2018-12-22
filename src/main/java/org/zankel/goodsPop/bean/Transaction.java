@@ -1,10 +1,7 @@
 package org.zankel.goodsPop.bean;
 
 import com.sun.istack.internal.NotNull;
-import org.nutz.dao.entity.annotation.Column;
-import org.nutz.dao.entity.annotation.Id;
-import org.nutz.dao.entity.annotation.One;
-import org.nutz.dao.entity.annotation.Table;
+import org.nutz.dao.entity.annotation.*;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -52,6 +49,11 @@ public class Transaction {
      */
     @Column
     private Date transacDate;
+    /**
+     * 是否完成交易
+     */
+    @Column
+    private String transacStatu;
     /**
      * 结账时间
      */
@@ -113,6 +115,14 @@ public class Transaction {
 
     public void setTransacDate(Date transcaDate) {
         this.transacDate = transcaDate;
+    }
+
+    public String getTransacStatu() {
+        return transacStatu;
+    }
+
+    public void setTransacStatu(String transacStatu) {
+        this.transacStatu = transacStatu;
     }
 
     public String getFinishDate() {

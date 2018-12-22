@@ -16,27 +16,36 @@ var TableDatatablesEditable = function () {
         function editRow(oTable, nRow) {
             var aData = oTable.fnGetData(nRow);
             var jqTds = $('>td', nRow);
-            jqTds[0].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[0] + '">';
             jqTds[1].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[1] + '">';
             jqTds[2].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[2] + '">';
             jqTds[3].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[3] + '">';
-            aData[4]=aData[4].slice(0,10)+'T'+aData[4].slice(11);
-            jqTds[4].innerHTML = '<input type="datetime-local" class="form-control input-small" value="' + aData[4] + '">';
-            jqTds[5].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[5] + '">';
-            jqTds[6].innerHTML = '<a class="edit" href="">Save</a>';
-            jqTds[7].innerHTML = '<a class="cancel" href="">Cancel</a>';
+            jqTds[4].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[4] + '">';
+            if (aData[4] == "等待付清")
+                jqTds[4].innerHTML = '<select class="form-control input-small"><option value="0" selected>等待付清</option><option value="1">交易完成</option><option value="2">交易关闭</option></select>';
+            if (aData[4] == "交易完成")
+                jqTds[4].innerHTML = '<select class="form-control input-small"><option value="0" >等待付清</option><option value="1" selected>交易完成</option><option value="2">交易关闭</option></select>';
+            if (aData[4] == "交易关闭")
+                jqTds[4].innerHTML = '<select class="form-control input-small"><option value="0" >等待付清</option><option value="1">交易完成</option><option value="2" selected>交易关闭</option></select>';
+
+            jqTds[5].innerHTML = '<a class="edit" href="">Save</a>';
+            jqTds[6].innerHTML = '<a class="cancel" href="">Cancel</a>';
         }
 
         function saveRow(oTable, nRow) {
             var jqInputs = $('input', nRow);
-            oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
-            oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
-            oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
-            oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-            oTable.fnUpdate(jqInputs[4].value.slice(0,10)+' '+jqInputs[4].value.slice(11), nRow, 4, false);
-            oTable.fnUpdate(jqInputs[5].value, nRow, 5, false);
-            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 6, false);
-            oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 7, false);
+            var jqSelect = $("select", nRow);
+            oTable.fnUpdate(jqInputs[0].value, nRow, 1, false);
+            oTable.fnUpdate(jqInputs[1].value, nRow, 2, false);
+            oTable.fnUpdate(jqInputs[2].value, nRow, 3, false);
+            if(jqSelect[0].value == 0)
+                oTable.fnUpdate("等待付清", nRow, 4, false);
+            if(jqSelect[0].value == 1)
+                oTable.fnUpdate("交易完成", nRow, 4, false);
+            if(jqSelect[0].value == 2)
+                oTable.fnUpdate("交易关闭", nRow, 4, false);
+            // oTable.fnUpdate(jqInputs[4].value.slice(0,10)+' '+jqInputs[4].value.slice(11), nRow, 4, false);
+            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 5, false);
+            oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 6, false);
             oTable.fnDraw();
         }
 
@@ -47,7 +56,6 @@ var TableDatatablesEditable = function () {
             oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
             oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
             oTable.fnUpdate(jqInputs[4].value, nRow, 4, false);
-            oTable.fnUpdate(jqInputs[5].value, nRow, 5, false);
             oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 5, false);
             oTable.fnDraw();
         }
@@ -113,7 +121,7 @@ var TableDatatablesEditable = function () {
                 }
             }
 
-            var aiNew = oTable.fnAddData(['', '', '', '', '', '','','']);
+            var aiNew = oTable.fnAddData(['', '', '', '', '', '', '']);
             var nRow = oTable.fnGetNodes(aiNew[0]);
             editRow(oTable, nRow);
             nEditing = nRow;
@@ -160,15 +168,15 @@ var TableDatatablesEditable = function () {
                 saveRow(oTable, nEditing);
                 nEditing = null;
                 var jqInputs = $('>td', nRow);
-                $.ajax({
+                /*$.ajax({
                     type:"POST",
                     url:"/transac/updateRow",
-                    data:{customerName:jqInputs[1].value,leatherName:jqInputs[2].value,transacVolumn:jqInputs[3].value,transacDate:jqInputs[4].value},
+                    data:{transacVolumn:jqInputs[3].value,transacDate:jqInputs[4].value},
                     dataType:"json",
                     success:function(data){
                         console.log("更改完成");
                     }
-                })
+                })*/
                 alert("Updated! Do not forget to do some ajax to sync with backend :)");
             } else {
                 /* No edit in progress - let's start one */

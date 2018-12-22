@@ -121,7 +121,6 @@
                                     <th> 客户 </th>
                                     <th> 商品 </th>
                                     <th> 交易额 </th>
-                                    <th> 交易时间 </th>
                                     <th> 状态 </th>
                                     <th> 编辑 </th>
                                     <th> 删除 </th>
@@ -130,13 +129,11 @@
                                 <tbody>
                                 <%for (Transaction transaction:(List<Transaction>)request.getAttribute("obj")){%><tr>
                                     <td> <%=transaction.getTransacId()%></td>
-                                    <td> <%=transaction.getCustomerName()%> </td>
-                                    <td> <%=transaction.getLeather().getLeatherName()%> </td>
+                                    <td><a href="/customer/detail?customerName=<%=transaction.getCustomerName()%>"> <%=transaction.getCustomerName()%> </a></td>
+                                    <td><a href="/leather/detail?leatherId=<%=transaction.getLeatherId()%>"> <%=transaction.getLeather().getLeatherName()%> </a></td>
                                     <td> <%=transaction.getTransacVolumn()%> </td>
-                                    <td> <%=transaction.getTransacDate()%> </td>
-                                    <td> <%=transaction.getTransacDate()%></td>
+                                    <td> <%=transaction.getTransacStatu()%></td>
                                     <%}%>
-                                    <%--<td> <%if(transaction.getFinishDate()!=null)out.print((String)transaction.getFinishDate());%>;else out.print("未付清");%></td>--%>
                                     <td>
                                         <a class="edit" href="javascript:;"> Edit </a>
                                     </td>
