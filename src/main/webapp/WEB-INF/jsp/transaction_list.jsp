@@ -129,16 +129,16 @@
                                 <tbody>
                                 <%for (Transaction transaction:(List<Transaction>)request.getAttribute("obj")){%><tr>
                                     <td> <%=transaction.getTransacId()%></td>
-                                    <td><a href="/customer/detail?customerName=<%=transaction.getCustomerName()%>"> <%=transaction.getCustomerName()%> </a></td>
-                                    <td><a href="/leather/detail?leatherId=<%=transaction.getLeatherId()%>"> <%=transaction.getLeather().getLeatherName()%> </a></td>
+                                    <td><%=transaction.getCustomerName()%></td>
+                                    <td><%=transaction.getLeather().getLeatherName()%></td>
                                     <td> <%=transaction.getTransacVolumn()%> </td>
                                     <td> <%=transaction.getTransacStatu()%></td>
                                     <%}%>
                                     <td>
-                                        <a class="edit" href="javascript:;"> Edit </a>
+                                        <a class="edit" href="javascript:;"> 编辑 </a>
                                     </td>
                                     <td>
-                                        <a class="delete" href="javascript:;"> Delete </a>
+                                        <a class="delete" href="javascript:;"> 删除 </a>
                                     </td>
                                 </tr>
                                 </tbody>

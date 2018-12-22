@@ -28,11 +28,11 @@ public class Transaction {
      * 皮革ID,映射
      */
     @Column
-    private int leatherId;
+    private String leatherName;
     /**
      * 交易皮革
      */
-    @One(field = "leatherId")
+    @One(field = "leatherName")
     private Leather leather;
     /**
      * 交易量
@@ -76,12 +76,12 @@ public class Transaction {
         this.customerName = customerName;
     }
 
-    public int getLeatherId() {
-        return leatherId;
+    public String getLeatherName() {
+        return leatherName;
     }
 
-    public void setLeatherId(int leatherId) {
-        this.leatherId = leatherId;
+    public void setLeatherName(String leatherName) {
+        this.leatherName = leatherName;
     }
 
     public Leather getLeather() {
@@ -125,12 +125,11 @@ public class Transaction {
         this.transacStatu = transacStatu;
     }
 
-    public String getFinishDate() {
-        return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(finishDate);
+    public Date getFinishDate() {
+        return finishDate;
     }
 
     public void setFinishDate(Date finishDate) {
         this.finishDate = finishDate;
     }
-
 }

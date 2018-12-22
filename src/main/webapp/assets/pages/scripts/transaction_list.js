@@ -27,8 +27,8 @@ var TableDatatablesEditable = function () {
             if (aData[4] == "交易关闭")
                 jqTds[4].innerHTML = '<select class="form-control input-small"><option value="0" >等待付清</option><option value="1">交易完成</option><option value="2" selected>交易关闭</option></select>';
 
-            jqTds[5].innerHTML = '<a class="edit" href="">Save</a>';
-            jqTds[6].innerHTML = '<a class="cancel" href="">Cancel</a>';
+            jqTds[5].innerHTML = '<a class="edit" href="">保存</a>';
+            jqTds[6].innerHTML = '<a class="cancel" href="">取消</a>';
         }
 
         function saveRow(oTable, nRow) {
@@ -44,8 +44,8 @@ var TableDatatablesEditable = function () {
             if(jqSelect[0].value == 2)
                 oTable.fnUpdate("交易关闭", nRow, 4, false);
             // oTable.fnUpdate(jqInputs[4].value.slice(0,10)+' '+jqInputs[4].value.slice(11), nRow, 4, false);
-            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 5, false);
-            oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 6, false);
+            oTable.fnUpdate('<a class="edit" href="">编辑</a>', nRow, 5, false);
+            oTable.fnUpdate('<a class="delete" href="">删除</a>', nRow, 6, false);
             oTable.fnDraw();
         }
 
@@ -177,8 +177,15 @@ var TableDatatablesEditable = function () {
             }
 
             var nRow = $(this).parents('tr')[0];
+            aData=oTable.fnGetData(nRow);
             oTable.fnDeleteRow(nRow);
-            alert("Deleted! Do not forget to do some ajax to sync with backend :)");
+            $.ajax({
+                type:"POST",
+                url:"/transac/deleteRow",
+                data:{transacId:aData[0]},
+                dataType:"json"
+            })
+            alert("已删除:)");
         });
 
         table.on('click', '.cancel', function (e) {
@@ -204,21 +211,21 @@ var TableDatatablesEditable = function () {
                 restoreRow(oTable, nEditing);
                 editRow(oTable, nRow);
                 nEditing = nRow;
-            } else if (nEditing == nRow && this.innerHTML == "Save") {
+            } else if (nEditing == nRow && this.innerHTML == "保存") {
                 /* Editing this row and want to save it */
                 saveRow(oTable, nEditing);
                 nEditing = null;
-                var jqInputs = $('>td', nRow);
-                /*$.ajax({
+                var aData = oTable.fnGetData(nRow);
+                $.ajax({
                     type:"POST",
                     url:"/transac/updateRow",
-                    data:{transacVolumn:jqInputs[3].value,transacDate:jqInputs[4].value},
+                    data:{transacId:aData[0],customerName:aData[1],leatherName:aData[2],transacVolumn:aData[3],transacStatu:aData[4]},
                     dataType:"json",
                     success:function(data){
                         console.log("更改完成");
                     }
-                })*/
-                alert("Updated! Do not forget to do some ajax to sync with backend :)");
+                })
+                alert("更新成功 :)");
             } else {
                 /* No edit in progress - let's start one */
                 editRow(oTable, nRow);
