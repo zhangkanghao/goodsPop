@@ -64,37 +64,78 @@ var TableDatatablesEditable = function () {
 
         var oTable = table.dataTable({
 
-            // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
-            // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js). 
-            // So when dropdowns used the scrollable div should be removed. 
-            //"dom": "<'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>",
-
-            "lengthMenu": [
+            lengthMenu: [
                 [5, 15, 20, -1],
                 [5, 15, 20, "All"] // change per page values here
             ],
 
-            // Or you can use remote translation file
-            //"language": {
-            //   url: '//cdn.datatables.net/plug-ins/3cfcc339e89/i18n/Portuguese.json'
-            //},
+            pageLength: 5,
 
-            // set the initial value
-            "pageLength": 5,
-
-            "language": {
-                "lengthMenu": " _MENU_ records"
+            language: {
+                // "lengthMenu": " _MENU_ records"
+                "sProcessing": "处理中...",
+                "sLengthMenu": "显示 _MENU_ 项结果",
+                "sZeroRecords": "没有匹配结果",
+                "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                "sInfoPostFix": "",
+                "sSearch": "搜索:",
+                "sUrl": "",
+                "sEmptyTable": "表中数据为空",
+                "sLoadingRecords": "载入中...",
+                "sInfoThousands": ",",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "上页",
+                    "sNext": "下页",
+                    "sLast": "末页"
+                },
+                "oAria": {
+                    "sSortAscending": ": 以升序排列此列",
+                    "sSortDescending": ": 以降序排列此列"
+                }
             },
-            "columnDefs": [{ // set default column settings
+            columnDefs: [{ // set default column settings
                 'orderable': true,
                 'targets': [0]
             }, {
                 "searchable": true,
                 "targets": [0]
             }],
-            "order": [
+            order: [
                 [0, "asc"]
-            ] // set first column as a default sort by asc
+            ], // set first column as a default sort by asc
+            buttons: [{
+                extend: "print",
+                className: "btn dark btn-outline",
+                text:"打印",
+                exportOptions: {
+                    columns:':visible'
+                }
+            }, {
+                extend: "copy",
+                className: "btn red btn-outline",
+                text:"复制",
+                exportOptions: {
+                    columns:':visible'
+                }
+            }, {
+                extend: "csv",
+                className: "btn purple btn-outline ",
+                text:"导出CSV",
+                exportOptions: {
+                    columns:':visible'
+                }
+            }],
+            responsive: !0,
+            fixedHeader: {
+                header: !0,
+                headerOffset: table
+            },
+            pagingType: "bootstrap_full_number",
+            //dom控制datatables元素的位置,比如按钮,不设置的话元素不会显示
+            dom: "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>"
         });
 
         var tableWrapper = $("#sample_editable_1_wrapper");

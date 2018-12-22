@@ -87,31 +87,31 @@
                         <div class="portlet-body">
                             <div class="table-toolbar">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="btn-group">
                                             <button id="sample_editable_1_new" class="btn green"> 添加
                                                 <i class="fa fa-plus"></i>
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="btn-group pull-right">
-                                            <button class="btn green btn-outline dropdown-toggle" data-toggle="dropdown">Tools
-                                                <i class="fa fa-angle-down"></i>
-                                            </button>
-                                            <ul class="dropdown-menu pull-right">
-                                                <li>
-                                                    <a href="javascript:;"> 打印 </a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:;"> 保存到PDF </a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:;"> 输出到Excel </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                    <%--<div class="col-md-6">--%>
+                                        <%--<div class="btn-group pull-right">--%>
+                                            <%--<button class="btn green btn-outline dropdown-toggle" data-toggle="dropdown">Tools--%>
+                                                <%--<i class="fa fa-angle-down"></i>--%>
+                                            <%--</button>--%>
+                                            <%--<ul class="dropdown-menu pull-right">--%>
+                                                <%--<li>--%>
+                                                    <%--<a href="javascript:jquery.printit();"> 打印 </a>--%>
+                                                <%--</li>--%>
+                                                <%--<li>--%>
+                                                    <%--<a href="javascript:;"> 保存到PDF </a>--%>
+                                                <%--</li>--%>
+                                                <%--<li>--%>
+                                                    <%--<a href="javascript:;"> 输出到Excel </a>--%>
+                                                <%--</li>--%>
+                                            <%--</ul>--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
                                 </div>
                             </div>
                             <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
